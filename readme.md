@@ -51,29 +51,25 @@
 
 ### Ex - Query JOIN 
 
-1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
-    - 
+1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia 
     ``` 
     SELECT   COUNT(`students`.`id`) AS `numero_studenti` ,`degrees`.`name` as `corso_di_laurea` FROM `degrees` JOIN `students` ON `degrees`.`id` = `students`.`degree_id` WHERE `degrees`.`name` LIKE 'Corso di Laurea in Economia'; 
     
     ```
 
 2. Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
-    - 
     ``` 
     SELECT `departments`.`name` AS `dipartimento`, `degrees`.`name` AS `corso_laurea` FROM `departments`  JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`  WHERE `degrees`.`level` LIKE 'magistrale' AND `departments`.`name` LIKE 'Dipartimento di Neuroscienze'
     
     ```
 
 3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
-    - 
     ``` 
     SELECT `courses`.`name` as `nome_corso`, `teachers`.* FROM `courses` JOIN `course_teacher` on `courses`.`id` = `course_teacher`.`course_id` JOIN `teachers` on `course_teacher`.`teacher_id` = `teachers`.`id` WHERE `teacher_id` = 44 
     
     ```
 
 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui
-    - 
     ```
     SELECT `students`.* , `degrees`.`name` as `cors_laurea`, `departments`.`name`  FROM `students` JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id` JOIN `departments` ON `degrees`.`department_id` = `departments`.`id` ORDER BY `students`.`name`, `students`.`surname` 
     
