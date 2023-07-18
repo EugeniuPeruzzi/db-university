@@ -18,35 +18,66 @@
     - ```SELECT * FROM `teachers` WHERE `phone` IS NULL```
 
 
-# Ex - Query GROUP BY
+### Ex - Query GROUP BY
 
 1. Contare quanti iscritti ci sono stati ogni anno
-    - ``` SELECT COUNT(*) as `number_of_students`, YEAR(`enrolment_date`) FROM `students` GROUP BY YEAR(`enrolment_date`); ```
+    - 
+    ``` 
+    SELECT COUNT(*) as `number_of_students`, YEAR(`enrolment_date`) FROM `students` GROUP BY YEAR(`enrolment_date`); 
+    
+    ```
 
 2. Contare gli insegnanti che hanno l'ufficio nello stesso edificio
-    - ```SELECT COUNT(*) as `number_of_teachers` , `office_address` FROM `teachers` GROUP BY `office_address`; ```
+    - 
+    ```
+    SELECT COUNT(*) as `number_of_teachers` , `office_address` FROM `teachers` GROUP BY `office_address`; 
+    
+    ```
 
 3. Calcolare la media dei voti di ogni appello d'esame
-    -  ``` SELECT `exams`.`id` as `esame_id`, AVG(`exam_student`.`vote`) FROM `exams` JOIN `exam_student` on `exams`.`id` = `exam_student`.`exam_id` GROUP BY `exams`.`id`; ```
+    -  
+    ``` 
+    SELECT `exams`.`id` as `esame_id`, AVG(`exam_student`.`vote`) FROM `exams` JOIN `exam_student` on `exams`.`id` = `exam_student`.`exam_id` GROUP BY `exams`.`id`; 
+    
+    ```
 
 4. Contare quanti corsi di laurea ci sono per ogni dipartimento
-    - SELECT `departments`.`name` as `dipartimento_nome`, COUNT(`degrees`.`id`) as `corsi` FROM `departments` JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id` GROUP BY `departments`.`id`; 
+    - 
+    ```
+    SELECT `departments`.`name` as `dipartimento_nome`, COUNT(`degrees`.`id`) as `corsi` FROM `departments` JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id` GROUP BY `departments`.`id`; 
+
+    ```
 
 
-# Ex - Query JOIN 
+### Ex - Query JOIN 
 
 1. Selezionare tutti gli studenti iscritti al Corso di Laurea in Economia
-    - ``` SELECT   COUNT(`students`.`id`) AS `numero_studenti` ,`degrees`.`name` as `corso_di_laurea` FROM `degrees` JOIN `students` ON `degrees`.`id` = `students`.`degree_id` WHERE `degrees`.`name` LIKE 'Corso di Laurea in Economia'; ```
+    - 
+    ``` 
+    SELECT   COUNT(`students`.`id`) AS `numero_studenti` ,`degrees`.`name` as `corso_di_laurea` FROM `degrees` JOIN `students` ON `degrees`.`id` = `students`.`degree_id` WHERE `degrees`.`name` LIKE 'Corso di Laurea in Economia'; 
+    
+    ```
 
-2. Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di
-Neuroscienze
-    - ``` SELECT `departments`.`name` AS `dipartimento`, `degrees`.`name` AS `corso_laurea` FROM `departments`  JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`  WHERE `degrees`.`level` LIKE 'magistrale' AND `departments`.`name` LIKE 'Dipartimento di Neuroscienze'```
+2. Selezionare tutti i Corsi di Laurea Magistrale del Dipartimento di Neuroscienze
+    - 
+    ``` 
+    SELECT `departments`.`name` AS `dipartimento`, `degrees`.`name` AS `corso_laurea` FROM `departments`  JOIN `degrees` ON `departments`.`id` = `degrees`.`department_id`  WHERE `degrees`.`level` LIKE 'magistrale' AND `departments`.`name` LIKE 'Dipartimento di Neuroscienze'
+    
+    ```
 
 3. Selezionare tutti i corsi in cui insegna Fulvio Amato (id=44)
-    - ``` SELECT `courses`.`name` as `nome_corso`, `teachers`.* FROM `courses` JOIN `course_teacher` on `courses`.`id` = `course_teacher`.`course_id` JOIN `teachers` on `course_teacher`.`teacher_id` = `teachers`.`id` WHERE `teacher_id` = 44 ```
+    - 
+    ``` 
+    SELECT `courses`.`name` as `nome_corso`, `teachers`.* FROM `courses` JOIN `course_teacher` on `courses`.`id` = `course_teacher`.`course_id` JOIN `teachers` on `course_teacher`.`teacher_id` = `teachers`.`id` WHERE `teacher_id` = 44 
+    
+    ```
 
 4. Selezionare tutti gli studenti con i dati relativi al corso di laurea a cui
-    - ```SELECT `students`.* , `degrees`.`name` as `cors_laurea`, `departments`.`name`  FROM `students` JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id` JOIN `departments` ON `degrees`.`department_id` = `departments`.`id` ORDER BY `students`.`name`, `students`.`surname` ```
+    - 
+    ```
+    SELECT `students`.* , `degrees`.`name` as `cors_laurea`, `departments`.`name`  FROM `students` JOIN `degrees` ON `students`.`degree_id` = `degrees`.`id` JOIN `departments` ON `degrees`.`department_id` = `departments`.`id` ORDER BY `students`.`name`, `students`.`surname` 
+    
+    ```
 
 sono iscritti e il relativo dipartimento, in ordine alfabetico per cognome e
 nome
